@@ -8,8 +8,8 @@
         body {
             margin: 0;
             padding: 0;
-            background: url('https://raw.githubusercontent.com/kr4ant/website/main/dotart.png') no-repeat center center fixed;
-            background-size: cover;  /* This ensures the image covers the whole screen */
+            /* Temporary color for testing */
+            background: #000000;  /* Check if this works */
             font-family: 'Courier New', Courier, monospace;
             color: #00FF00;
             overflow: hidden;
@@ -57,7 +57,7 @@
             if (timeLeft <= 0) {
                 clearInterval(timerInterval);
                 // You could show a final message when time is up, if you like
-                alert('Your files have been destroyed!');
+                alert('Your files have been destroyed! Just kidding.');
             }
 
             timeLeft--;
