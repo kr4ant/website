@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Scary Timer with ASCII Art</title>
+  <meta charset="UTF-8" />
+  <title>USB Countdown</title>
   <style>
     body {
       margin: 0;
       padding: 0;
+      background-color: #000;
+      color: #0f0;
+      font-family: monospace;
       display: flex;
-      background: url('https://kr4ant.github.io/website/picture/dotart.png') no-repeat center center fixed;
-      background-size: cover;
-      font-family: 'Courier New', Courier, monospace;
-      color: #00FF00;
       height: 100vh;
       overflow: hidden;
     }
@@ -19,116 +18,89 @@
     .ascii-container {
       white-space: pre;
       padding: 20px;
-      background-color: #111;
-      color: #0f0;
-      min-width: 400px;
       overflow-x: auto;
-      overflow-y: auto;
+      min-width: 400px;
+      font-size: 18px;
+      line-height: 1.1;
     }
 
-    .right-content {
+    .box-container {
       flex-grow: 1;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
     }
 
-    .timer-container {
-      background: rgba(255, 0, 0, 0.8);
-      padding: 20px;
-      border-radius: 10px;
+    .box {
+      border: 2px solid #0f0;
+      padding: 40px;
       text-align: center;
+      max-width: 400px;
+      width: 100%;
     }
 
-    .typewriter {
+    .box h1 {
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+
+    .box p {
       font-size: 20px;
-      color: #ffffff;
-      margin-bottom: 15px;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: .15em solid #ffffff;
-      width: 0;
-      animation: typing 5s steps(40, end) forwards, blink .75s step-end infinite;
-    }
-
-    .message {
-      font-size: 24px;
-      color: white;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
 
     .timer {
-      font-size: 48px;
+      font-size: 36px;
       font-weight: bold;
-    }
-
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-
-    @keyframes blink {
-      from, to { border-color: transparent }
-      50% { border-color: white }
+      margin-top: 10px;
+      color: #0f0;
     }
   </style>
 </head>
 <body>
   <div class="ascii-container">
-⣿⣿⣿⣿⣿⣿⡟⠁⠄⠄⠄⠄⣠⣤⣴⣶⣶⣶⣶⣤⡀⠈⠙⢿⣿⣿⣿⣿⣿ <br>
-⣿⣿⣿⣿⣿⡟⠄⠄⠄⠄⠄⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠄⠈⣿⣿⣿⣿⣿ <br>
-⣿⣿⣿⣿⣿⠁⠄⠄⠄⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠄⠄⢺⣿⣿⣿⣿ <br>
-⣿⣿⣿⣿⣿⡄⠄⠄⠄⠙⠻⠿⣿⣿⣿⣿⠿⠿⠛⠛⠻⣿⡄⠄⣾⣿⣿⣿⣿ <br>
-⣿⣿⣿⣿⣿⡇⠄⠄⠁ 👁️ ⠄⢹⣿⡗⠄ 👁️ ⢄⡀⣾⢀⣿⣿⣿⣿⣿⣿ <br>
-⣿⣿⣿⣿⣿⡇⠘⠄⠄⠄⢀⡀⠄⣿⣿⣷⣤⣤⣾⣿⣿⣿⣧⢸⣿⣿⣿⣿⣿ <br>
-⣿⣿⣿⣿⣿⡇⠄⣰⣿⡿⠟⠃⠄⣿⣿⣿⣿⣿⡛⠿⢿⣿⣷⣾⣿⣿⣿⣿⣿ <br>
-⣿⣿⣿⣿⣿⣿⡄⠈⠁⠄⠄⠄⠄⠻⠿⢛⣿⣿⠿⠂⠄⢹⢹⣿⣿⣿⣿⣿⣿ <br>
-⣿⣿⣿⣿⣿⣿⣿⡐⠐⠄⠄⣠⣀⣀⣚⣯⣵⣶⠆⣰⠄⠞⣾⣿⣿⣿⣿⣿⣿ <br>
-⣿⣿⣿⣿⣿⣿⣿⣷⡄⠄⠄⠈⠛⠿⠿⠿⣻⡏⢠⣿⣎⣾⣿⣿⣿⣿⣿⣿⣿ <br>
-⣿⣿⣿⣿⣿⣿⡿⠟⠛⠄⠄⠄⠄⠙⣛⣿⣿⣵⣿⡿⢹⡟⣿⣿⣿⣿⣿ <br>
+⣿⣿⣿⣿⣿⣿⡟⠁⠄⠄⠄⠄⣠⣤⣴⣶⣶⣶⣶⣤⡀⠈⠙⢿⣿⣿⣿⣿⣿<br>
+⣿⣿⣿⣿⣿⡟⠄⠄⠄⠄⠄⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠄⠈⣿⣿⣿⣿⣿<br>
+⣿⣿⣿⣿⣿⠁⠄⠄⠄⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠄⠄⢺⣿⣿⣿⣿<br>
+⣿⣿⣿⣿⣿⡄⠄⠄⠄⠙⠻⠿⣿⣿⣿⣿⠿⠿⠛⠛⠻⣿⡄⠄⣾⣿⣿⣿⣿<br>
+⣿⣿⣿⣿⣿⡇⠄⠄⠁ 👁️ ⠄⢹⣿⡗⠄ 👁️ ⢄⡀⣾⢀⣿⣿⣿⣿⣿⣿<br>
+⣿⣿⣿⣿⣿⡇⠘⠄⠄⠄⢀⡀⠄⣿⣿⣷⣤⣤⣾⣿⣿⣿⣧⢸⣿⣿⣿⣿⣿<br>
+⣿⣿⣿⣿⣿⡇⠄⣰⣿⡿⠟⠃⠄⣿⣿⣿⣿⣿⡛⠿⢿⣿⣷⣾⣿⣿⣿⣿⣿<br>
+⣿⣿⣿⣿⣿⣿⡄⠈⠁⠄⠄⠄⠄⠻⠿⢛⣿⣿⠿⠂⠄⢹⢹⣿⣿⣿⣿⣿⣿<br>
+⣿⣿⣿⣿⣿⣿⣿⡐⠐⠄⠄⣠⣀⣀⣚⣯⣵⣶⠆⣰⠄⠞⣾⣿⣿⣿⣿⣿⣿<br>
+⣿⣿⣿⣿⣿⣿⣿⣷⡄⠄⠄⠈⠛⠿⠿⠿⣻⡏⢠⣿⣎⣾⣿⣿⣿⣿⣿⣿⣿<br>
+⣿⣿⣿⣿⣿⣿⡿⠟⠛⠄⠄⠄⠄⠙⣛⣿⣿⣵⣿⡿⢹⡟⣿⣿⣿⣿⣿<br>
   </div>
 
-  <div class="right-content">
-    <div class="timer-container">
-      <div class="typewriter" id="typewriterText"></div>
-      <div class="message">Warning: Your files will be destroyed in</div>
-      <div class="timer" id="timer">5:00</div>
+  <div class="box-container">
+    <div class="box">
+      <h1>PAYLOAD ARMED</h1>
+      <p>Device will activate in:</p>
+      <div class="timer" id="timer">00:30</div>
     </div>
   </div>
 
   <script>
-    // Typewriter animation
-    const text = "Decrypt key failed. Initializing full wipe protocol...";
-    const typewriter = document.getElementById("typewriterText");
+    let countdown = 30;
 
-    let index = 0;
-    function type() {
-        if (index < text.length) {
-            typewriter.textContent += text.charAt(index);
-            index++;
-            setTimeout(type, 50);
-        }
-    }
-    type();
+    const timerElement = document.getElementById('timer');
 
-    // Countdown timer
-    let timeLeft = 300;
-    let timerElement = document.getElementById('timer');
+    const updateTimer = () => {
+      const minutes = Math.floor(countdown / 60).toString().padStart(2, '0');
+      const seconds = (countdown % 60).toString().padStart(2, '0');
+      timerElement.textContent = `${minutes}:${seconds}`;
 
-    function updateTimer() {
-        let minutes = Math.floor(timeLeft / 60);
-        let seconds = timeLeft % 60;
-        timerElement.textContent = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+      if (countdown > 0) {
+        countdown--;
+        setTimeout(updateTimer, 1000);
+      } else {
+        timerElement.textContent = "EXECUTED";
+        timerElement.style.color = "#f00";
+      }
+    };
 
-        if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            alert('Your files have been destroyed! Just kidding.');
-        }
-
-        timeLeft--;
-    }
-
-    let timerInterval = setInterval(updateTimer, 1000);
+    updateTimer();
   </script>
 </body>
 </html>
+
